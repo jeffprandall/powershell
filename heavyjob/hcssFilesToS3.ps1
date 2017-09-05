@@ -1,3 +1,11 @@
+#Check if previous instance is still running
+$Processes = Get-WMIObject -Class Win32_Process -Filter "Name='PowerShell.EXE'" | Where {$_.CommandLine -Like "*HCSSFilesToS3*"}
+if ($Processes -ne $null) {
+    Write-EventLog -LogName Application -Source "HCSStoS3" -EntryType Information -EventId 1 -Message "Previous task still running"
+    exit
+}
+
+Get-AWSCredential -ListProfileDetail
 # Install AWS PowerShell - http://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html
 # Install-Package -Name AWSPowerShell
 
@@ -5,13 +13,13 @@
 Import-Module AWSPowerShell
 
 # Auth Keys
-$AccessKey = '<your access key here>'
-$SecretKey = '<your secret key here>'
+$AccessKey = '<your aws access key>'
+$SecretKey = '<your aws secret key>'
 $hcssCredentials = 'hcssCredentials'
 
 # Set your AWS Credentials
-$awsCredential = Get-AWSCredential -ListProfileDetail | Where-Object {$_.ProfileName -eq $hcssCredentials}
-if (! $awsCredential ) {
+$awsCredentials = Get-AWSCredential -ListProfileDetail | Where-Object {$_.ProfileName -eq $hcssCredentials}
+if (! $awsCredentials ) {
     Set-AWSCredential -AccessKey $AccessKey -SecretKey $SecretKey -StoreAs $hcssCredentials
 }
 
@@ -25,9 +33,9 @@ $bucket = 'heavyjob'
 $fileLocation = '\\Heavyjob\HeavyJob\MGRJOBS\'
 
 # Email settings
-$smtpserver = '<your email server here>'
-$from = 'heavyjobs@<your domain here>'
-$to = '<your email address here>'
+$smtpserver = '<your email server name/ip>'
+$from = 'heavyjobs@<your domain>'
+$to = 'itsupport@<your domain>'
 $subject = "Error uploading HeavyJob files into AWS/S3"
 
 # Logging
@@ -46,7 +54,7 @@ ForEach($file in $files) {
     $keyName = $jobName + '/' + $file.Name
 
     # Check if the file exists
-    if(!(Get-S3Object -BucketName $bucket -Key $keyName)) {
+    if(!(Get-S3Object -BucketName $bucket -Key $keyName -ProfileName $hcssCredentials )) {
         
         # Create the file
         Write-Host Saving the $keyName to AWS -ForegroundColor Yellow
