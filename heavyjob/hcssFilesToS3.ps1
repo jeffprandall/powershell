@@ -15,13 +15,6 @@ Import-Module AWSPowerShell
 # Auth Keys
 $AccessKey = '<your aws access key>'
 $SecretKey = '<your aws secret key>'
-$hcssCredentials = 'hcssCredentials'
-
-# Set your AWS Credentials
-$awsCredentials = Get-AWSCredential -ListProfileDetail | Where-Object {$_.ProfileName -eq $hcssCredentials}
-if (! $awsCredentials ) {
-    Set-AWSCredential -AccessKey $AccessKey -SecretKey $SecretKey -StoreAs $hcssCredentials
-}
 
 # Default Region
 $region = 'us-west-2'
@@ -54,12 +47,12 @@ ForEach($file in $files) {
     $keyName = $jobName + '/' + $file.Name
 
     # Check if the file exists
-    if(!(Get-S3Object -BucketName $bucket -Key $keyName -ProfileName $hcssCredentials )) {
+    if(!(Get-S3Object -BucketName $bucket -Key $keyName -AccessKey $AccessKey -SecretKey $SecretKey )) {
         
         # Create the file
         Write-Host Saving the $keyName to AWS -ForegroundColor Yellow
             Try {
-                Write-S3Object -BucketName $bucket -Key $keyName -File $file
+                Write-S3Object -BucketName $bucket -Key $keyName -File $file -AccessKey $AccessKey -SecretKey $SecretKey 
                 Write-EventLog -LogName Application -Source "HCSStoS3" -EntryType Information -EventId 1 -Message "Successfully uploaded $jobName - $file "
             }
             Catch {
