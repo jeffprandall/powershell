@@ -10,9 +10,9 @@ $SecretKey = '<your secret key here>'
 $hcssCredentials = 'hcssCredentials'
 
 # Set your AWS Credentials
-$awsCredentials = Get-AWSCredentials -ListProfileDetail | Where-Object {$_.ProfileName -eq $hcssCredentials}
-if (! $awsCredentials ) {
-    Set-AWSCredentials -AccessKey $AccessKey -SecretKey $SecretKey -StoreAs $hcssCredentials
+$awsCredential = Get-AWSCredential -ListProfileDetail | Where-Object {$_.ProfileName -eq $hcssCredentials}
+if (! $awsCredential ) {
+    Set-AWSCredential -AccessKey $AccessKey -SecretKey $SecretKey -StoreAs $hcssCredentials
 }
 
 # Default Region
