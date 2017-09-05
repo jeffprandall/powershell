@@ -1,2 +1,2 @@
-# powershell
-Random Powershell Scripts
+# Scripts n Stuff
+A bunch of random scripts
