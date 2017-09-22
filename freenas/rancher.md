@@ -6,9 +6,8 @@ A small cluster of three RancherOS servers.
 - rancher-host1 (192.168.2.201) will act as a rancher host
 - rancher-host2 (192.168.2.202) will act as a rancher host
 
-## Setting up RancherOS
 
-### Enable iohyve on FreeNAS
+## Enable iohyve on FreeNAS
 Iohyve is already installed in FreeNAS 9.10, so it only needs to be enabled. This is done by adding the following lines to `/conf/base/etc/rc.conf`:
 
 	iohyve_enable="YES"
@@ -16,6 +15,17 @@ Iohyve is already installed in FreeNAS 9.10, so it only needs to be enabled. Thi
 The first line enables iohyve generally, while the second line provides some configuration. Specifically, it specifies that iohyve should load the required kernel modules itself, use igb0 as bridge interface for all VMs and use the zpool storage-volume for vm storage.
 
 This change only becomes active after a reboot. Alternatively, `iohyve setup` can be run manually.
+
+
+## Setting up RancherOS
+
+A few of the things that change between each host
+
+- ip address in the `cloud-config.yml` file
+- hostname in the `cloud-config.yml` file
+- ssh keys
+- con=nmdmX - this way each host gets a dedicated console port
+
 
 ### Rancher Manager
 
@@ -233,8 +243,22 @@ Open up a browser and navigate to `http://192.168.2.200:8080` to verify the site
 Navigate to the INFRASTRUCTURE > HOSTS page
 
 Click Add Host
- 
 
+Copy the command to your clipboard and press Close.
+ 
+ssh into rancher-host1 
+
+`ssh rancher@192.168.2.201`
+
+Paste in the command  `sudo docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.6 http://192.168.2.200:8080/v1/scripts/1EE7343066EEAE6DDE95:1483142400000:ghoVauIyHminh35RqucEcOxkxc`
+
+ssh into rancher-host2
+
+`ssh rancher@192.168.2.202`
+
+Paste in the command  `sudo docker run --rm --privileged -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/rancher:/var/lib/rancher rancher/agent:v1.2.6 http://192.168.2.200:8080/v1/scripts/1EE7343066EEAE6DDE95:1483142400000:ghoVauIyHminh35RqucEcOxkxc`
+
+Now navigate back to `http://192.168.2.200:8080` and within a few minutes you should see rancher-host1 and rancher-host2.
 
 ##### Reference Documentation
 [A practical guide to containers on FreeNAS for a depraved psychopath.](https://medium.com/@andoriyu/a-practical-guide-to-containers-on-freenas-for-a-depraved-psychopath-c212203c0394)
