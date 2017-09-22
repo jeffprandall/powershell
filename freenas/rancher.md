@@ -1,4 +1,4 @@
-## Install 3 Ranchers on FreeNAS
+# Install 3 Ranchers on FreeNAS
 
 A small cluster of three RancherOS servers.
 
@@ -6,6 +6,7 @@ A small cluster of three RancherOS servers.
 - rancher-host1 (192.168.2.201) will act as a rancher host
 - rancher-host2 (192.168.2.202) will act as a rancher host
 
+## Setting up RancherOS
 
 ### Enable iohyve on FreeNAS
 Iohyve is already installed in FreeNAS 9.10, so it only needs to be enabled. This is done by adding the following lines to `/conf/base/etc/rc.conf`:
@@ -58,7 +59,7 @@ Create a `cloud-config.yml` file
             addresses:
               - 192.168.2.200/24
             gateway: 192.168.2.1
-          dhcp: false
+            dhcp: false
         dns:
           nameservers:
             - 8.8.8.8
@@ -124,7 +125,7 @@ Create a `cloud-config.yml` file
             addresses:
               - 192.168.2.201/24
             gateway: 192.168.2.1
-          dhcp: false
+            dhcp: false
         dns:
           nameservers:
             - 8.8.8.8
@@ -190,7 +191,7 @@ Create a `cloud-config.yml` file
             addresses:
               - 192.168.2.202/24
             gateway: 192.168.2.1
-          dhcp: false
+            dhcp: false
         dns:
           nameservers:
             - 8.8.8.8
@@ -217,6 +218,22 @@ Apply those new settings to rancher-host2
     iohyve start rancher
 	iohyve start rancher-host1
 	iohyve start rancher-host2
+
+## Setting up Rancher
+SSH into rancher which will be our main rancher server
+
+`ssh rancher@192.168.2.200`
+
+Install the Rancher Docker container
+
+`sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server`
+
+Open up a browser and navigate to `http://192.168.2.200:8080` to verify the site is up.
+
+Navigate to the INFRASTRUCTURE > HOSTS page
+
+Click Add Host
+ 
 
 
 ##### Reference Documentation
