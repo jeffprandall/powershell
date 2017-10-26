@@ -61,7 +61,7 @@ SELECT
   FOREMAN,
   RIGHT(FILENAME, 3) AS Extension,
   'https://s3-us-west-2.amazonaws.com/heavyjob/' + JOB + '/' + FILENAME AS Link,
-  'https://hcssuseruploads2.blob.core.windows.net/<your id here>/' + RIGHT(FILENAME, CHARINDEX('_', (FILENAME))) AS AzureLink,
+  'https://hcssuseruploads2.blob.core.windows.net/<your id here>/' + RIGHT(FILENAME, LEN(FILENAME) - CHARINDEX('_', FILENAME)) AS AzureLink,
   COMMENTS,
   (Row_Number() over (partition by JOB, DATE, RIGHT(FILENAME, 3) order by FILENAME)) As SortOrder
   
