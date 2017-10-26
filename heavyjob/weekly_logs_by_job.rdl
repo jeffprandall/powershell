@@ -91,7 +91,7 @@
                       <ActionInfo>
                         <Actions>
                           <Action>
-                            <Hyperlink>=Fields!Link.Value</Hyperlink>
+                            <Hyperlink>=Fields!AzureLink.Value</Hyperlink>
                           </Action>
                         </Actions>
                       </ActionInfo>
@@ -888,7 +888,7 @@
                       <ActionInfo>
                         <Actions>
                           <Action>
-                            <Hyperlink>=Fields!Link.Value</Hyperlink>
+                            <Hyperlink>=Fields!AzureLink.Value</Hyperlink>
                           </Action>
                         </Actions>
                       </ActionInfo>
