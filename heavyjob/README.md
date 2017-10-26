@@ -9,15 +9,19 @@ Using [HCSS to S3](https://github.com/jeffprandall/randoms/blob/master/heavyjob/
 4. Click on XML Data
 5. If there is an associated image/pdf associated you will something like this
 ```<UserPicture>
-    <FileName>
-        ~|https://hcssuseruploads2.blob.core.windows.net/<your client id>/20161018140508_photo-1476824698-2.jpg|~
+	<FileName>
+		~|https://hcssuseruploads2.blob.core.windows.net/<your client id>/20161018140508_photo-1476824698-2.jpg|~
 	</FileName>...
 ```
 6. Replace `<your id here>` with that client id on lines 34 and 64 in [sql_views](https://github.com/jeffprandall/randoms/blob/master/heavyjob/sql_views.sql)
 7. Then in the [Daily Logs by Job](https://github.com/jeffprandall/randoms/blob/master/heavyjob/daily_logs_by_job.rdl) update the Action > Selection URL on the Image Object to pull from [AzureLink] 
 8. Then in the [Weekly Logs by Job](https://github.com/jeffprandall/randoms/blob/master/heavyjob/weekly_logs_by_job.rdl) update the Action > Selection URL on the Image Object to pull from [AzureLink] 
 
-**OLD - not really needed anymore**
+
+
+----------
+
+***OLD - not really needed anymore***
 
 [HCSS to S3](https://github.com/jeffprandall/randoms/blob/master/heavyjob/hcssWriteToS3.ps1)
 
