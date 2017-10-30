@@ -1,0 +1,5 @@
+# Show sessions from a dedicated source IP
+show session all filter source <IP Address>
+
+# Clear sessions from a dedicated source ip
+clear session all filter source <IP Address>
