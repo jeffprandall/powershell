@@ -1,4 +1,4 @@
-##### Create a pool of ip address
+##### Create a pool of ip addresses
 
     ip dhcp pool 51-dhcp 
       network 172.16.51.0 255.255.255.0  
@@ -11,7 +11,10 @@
 
     ip dhcp pool <hostname>
       host 172.16.51.29 255.255.255.0
-      client-identifier <client mac address in this format aaaq.bbbb.cccc>
+      client-identifier <client mac address in this format aaaa.bbbb.cccc>
 
 ##### Show all dhcp leases
     show ip dhcp binding
+
+#### Clear dhcp bindings
+    clear ip dhcp bindings
