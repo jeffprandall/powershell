@@ -6,5 +6,5 @@
     portsnap fetch
     portsnap extract
     portsnap update
-#### Install Nano 
+#### Install a Package (Nano)
     pkg install nano
