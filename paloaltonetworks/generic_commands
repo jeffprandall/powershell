@@ -3,3 +3,6 @@ show session all filter source <IP Address>
 
 # Clear sessions from a dedicated source ip
 clear session all filter source <IP Address>
+
+# Clear dhcp leases
+clear dhcp lease all (or specify interface)
