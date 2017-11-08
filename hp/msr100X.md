@@ -1,6 +1,11 @@
- Configuration options for HP MSR1000 FlexNet Series Routers
+Configuration options for HP MSR1000 FlexNet Series Routers running CommWare OS
  
+[HP Docs](http://h22208.www2.hpe.com/eginfolib/networking/docs/routers/msrv5/cg/5200-2311_fund-cg/content/index.htm)
  
+Factory Reset - `Press and hold the Reset button for 3 to 5 seconds to reset to factory default settings.`
+
+Basic Commands
+
     system-view
     
     # Create User Account
