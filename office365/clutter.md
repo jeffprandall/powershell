@@ -13,3 +13,6 @@
     Get-Clutter -Identity $cluttermailbox.UserPrincipalName | Out-GridView 
     Set-Clutter -Identity $cluttermailbox.UserPrincipalName -Enable $false 
     Get-Clutter -Identity $cluttermailbox.UserPrincipalName |fl
+
+#### Enable/Disable for all users
+        Get-Mailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview
