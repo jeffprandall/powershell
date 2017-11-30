@@ -15,4 +15,4 @@
     Get-Clutter -Identity $cluttermailbox.UserPrincipalName |fl
 
 #### Enable/Disable for all users
-    Get-Mailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview
+    Get-RemoteMailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview
