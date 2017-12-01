@@ -17,4 +17,5 @@
     Get-Clutter -Identity $cluttermailbox.UserPrincipalName |fl
 
 #### Enable/Disable for all users
-    Get-RemoteMailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview
+    Get-RemoteMailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview (for some reason this does not work for me but it's the one all over web)
+    Get-RemoteMailbox -ResultSize Unlimited | Foreach-Object { Set-Clutter -Identity $_.UserPrincipalName -Enable $true }
