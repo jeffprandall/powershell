@@ -6,4 +6,4 @@
     1.  All Directories = checked
     2.  MapAllUser = root
     3.  MapAllGroup = wheel
-5.  Setup RancherNFS
+5.  [Setup RancherNFS](https://github.com/jeffprandall/randoms/blob/master/ranchers/nfs.md)
