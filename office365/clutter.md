@@ -17,5 +17,9 @@
     Get-Clutter -Identity $cluttermailbox.UserPrincipalName |fl
 
 #### Enable/Disable for all users
-    Get-RemoteMailbox -ResultSize Unlimited | Set-Clutter -Enable $False | Out-Gridview (for some reason this does not work for me but it's the one all over web)
-    Get-RemoteMailbox -ResultSize Unlimited | Foreach-Object { Set-Clutter -Identity $_.UserPrincipalName -Enable $true }
+    # Enables only for users who have Clutter $false
+    $AllMailboxes = Get-MailBox -Filter '(RecipientTypeDetails -eq "UserMailbox")' | Where-Object {(Get-Clutter -Identity $_.UserPrincipalName).IsEnabled -eq $False}
+    ForEach ($Mailbox in $AllMailboxes) { Set-Clutter -Identity $Mailbox.UserPrincipalName -Enable $True }
+
+    # OR Force for all users
+    Get-Mailbox -ResultSize Unlimited | Set-Clutter -Enable $True
