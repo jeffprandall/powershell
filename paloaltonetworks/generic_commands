@@ -1,6 +1,9 @@
 # Show sessions from a dedicated source IP
 show session all filter source <IP Address>
 
+# Take the Session ID from above command and drill into it
+show session id <session id>
+
 # Clear sessions from a dedicated source ip
 clear session all filter source <IP Address>
 
