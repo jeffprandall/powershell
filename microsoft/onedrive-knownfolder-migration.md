@@ -32,3 +32,9 @@ Through testing I realized I needed a GPO to move the files from the Offline loc
 13.  The target is checking if the Desktop folder DOES exist in the currently logged on users profile.  I also check the user profiles OneDrive location for Desktop just in case the KFM has not completed.
 ![Does exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Exist.png)
 14.  Verify the order ![order](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Order.png)
+15.  Now we create another GPO in that same OU.  I called mine "Disabled Folder Redirection".
+16.  Since the default Folder Redirection on a new policy is Not Configured this will essentially remove all Folder Redirection but we do need to set and verify some Environmental Variables under User Configuration > Preferences > Windows Settings > Enviroment.
+17.  Create a new Environmental Variable.  Set the Action to Update, the type to System Variable, the Name is LocalFolders and the Value to False.
+18. Click on the Common tab > Item-level Targetting and select Targeting
+19.  The target is checking if the Desktop folder DOES NOT exist in the currently logged on users profile.  I also check the user profiles OneDrive location for Desktop just in case the KFM has not completed.  This might seem overkill but during testing this GPO's kept fighting so I put this in just to verify.
+![Does exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Not%20Exist%20OneDrive.png)
