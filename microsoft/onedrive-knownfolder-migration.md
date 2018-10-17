@@ -26,8 +26,9 @@ Through testing I realized I needed a GPO to move the files from the Offline loc
 8.  Create another Environmental Variable.  Set the Action to Update, the type to System Variable, the Name to LocalFolders and the Value to False.  
 9.  Click on the Common tab > Item-level Targetting and select Targeting
 10.  For this example I am only checking Desktop but you can add whatever you like.  The target is checking if the Desktop folder DOES NOT exist in the currently logged on users profile.  In this scenario once a user switches to the new OU their data will be in C:\Windows\CSC and not in their C:\Users\Username\Desktop and now the variable LocalFolders = 0 which you will see later will let the "Redirect Folder Redirection" GPO apply.
-![Does exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Not%20Exist.png)
+![Does not exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Not%20Exist.png)
 11.  Create another Environmental Variable.  Set the Action to Update, the type to System Variable, the Name to LocalFolders and the Value to True.  
 12.  Click on the Common tab > Item-level Targetting and select Targeting
 13.  The target is checking if the Desktop folder DOES exist in the currently logged on users profile.  I also check the user profiles OneDrive location for Desktop just in case the KFM has not completed.
-![Does not exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Exist.png)
+![Does exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Exist.png)
+14.  Verify the order ![order](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Order.png)
