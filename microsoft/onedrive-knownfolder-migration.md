@@ -30,4 +30,4 @@ Through testing I realized I needed a GPO to move the files from the Offline loc
 11.  Create another Environmental Variable.  Set the Action to Update, the type to System Variable, the Name to LocalFolders and the Value to True.  
 12.  Click on the Common tab > Item-level Targetting and select Targeting
 13.  The target is checking if the Desktop folder DOES exist in the currently logged on users profile.  I also check the user profiles OneDrive location for Desktop just in case the KFM has not completed.
-![Does not exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/ENV%20-%20Does%20Not%20Exist.png)
+![Does not exist](https://github.com/jeffprandall/randoms/blob/master/microsoft/screenshots/ENV-Does%20Exist.png)
